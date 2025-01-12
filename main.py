@@ -107,35 +107,12 @@ async def get_surah_all(sura_id: str):
         "Ayahs": result
     }
 
-# @app.get("/search/arabic/")
-# async def search_arabic(keyword: str):
-#     # مطلوبہ لفظ کو نارملائز اور حرکات ہٹا کر صاف کریں
-#     keyword = normalize_arabic(keyword.strip())
-#     keyword = remove_tashkeel(keyword)
-
-#     # عربی متن میں سرچ کریں
-#     search_results = quran_data[quran_data["ArabicText"].str.contains(keyword, na=False, regex=True)]
-
-#     if search_results.empty:
-#         return {"error": f"No results found for '{keyword}' in Arabic text"}
-
-#     result = []
-#     for _, row in search_results.iterrows():
-#         result.append({
-#             "SuraID": row["SuraID"],
-#             "AyaNo": row["AyaNo"],
-#             "ArabicText": row["ArabicText"]
-#         })
-    
-#     return {"Results": result}
-
-
 # اردو ترجمہ میں تلاش کریں
 @app.get("/search/urdu/")
 async def search_urdu(keyword: str):
     keyword = keyword.strip()
 
-    search_results = quran_data[
+    search_results = quran_data[ 
         (quran_data["Fateh Muhammad Jalandhri"].str.contains(keyword, na=False, regex=True)) |
         (quran_data["Mehmood ul Hassan"].str.contains(keyword, na=False, regex=True))
     ]
@@ -154,3 +131,7 @@ async def search_urdu(keyword: str):
         })
     
     return {"Results": result}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
