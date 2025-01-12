@@ -5,18 +5,6 @@ import unicodedata
 
 app = FastAPI()
 
-# عربی اعراب (زبر، زیر، پیش) ہٹانے کا فنکشن
-# def remove_tashkeel(text: str) -> str:
-#     # اعراب کو ہٹانے کے لئے ایک ریگولر ایکسپریشن
-#     return re.sub(r'[\u064B-\u0652\u0670\u06D6\u06D7\u06D8\u06D9\u06DA\u06DB\u06DC\u06DD\u06DE\u06DF\u06E0\u06E1\u06E2\u06E3\u06E4\u06E5\u06E6\u06E7\u06E8\u06E9\u06EA\u06EB\u06EC\u06ED\u06EE\u06EF\u06F0\u06F1\u06F2\u06F3\u06F4\u06F5\u06F6\u06F7\u06F8\u06F9\u06FA\u06FB\u06FC\u06FD\u06FE\u06FF]', '', text)
-
-# # عربی حروف کو نارملائز کرنے کا فنکشن (مختلف حالتوں کو ایک ہی شکل میں تبدیل کرنا)
-# def normalize_arabic(text: str) -> str:
-#     # عربی حروف کو یونیکوڈ نارملائز کریں
-#     normalized_text = unicodedata.normalize('NFKC', text)
-#     # بعض اوقات الفاظ میں مختلف اسپیس کی علامات ہو سکتی ہیں، انہیں بھی صاف کریں
-#     normalized_text = re.sub(r'\s+', ' ', normalized_text).strip()
-#     return normalized_text
 
 def load_surahs():
     file_path = "QuranDaTa.xlsx"
@@ -132,6 +120,6 @@ async def search_urdu(keyword: str):
     
     return {"Results": result}
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+# if __name__ == "__main__":
+#     import uvicorn
+#     uvicorn.run(app, host="0.0.0.0", port=8000)
